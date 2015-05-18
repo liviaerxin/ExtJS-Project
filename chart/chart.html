@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to ExtJS Chart!</title>
+        <link rel="stylesheet" type="text/css" href="../../ext-5.1.0/build/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+        <script type="text/javascript" src="../../ext-5.1.0/build/ext-all.js"></script>
+        <script type="text/javascript" src="../../ext-5.1.0/build/packages/ext-charts/build/ext-charts.js"></script>
+        <script type="text/javascript" src="../../ext-5.1.0/build/packages/ext-theme-neptune/build/ext-theme-neptune.js"></script>
+        <!-- -->
+        <!--
+        <script type ="text/javascript" src="app.js"></script>
+        -->
+        <script>
+      
+        Ext.onReady(function(){
+        	function convertInt(value) {
+			  if (typeof value !== 'number') // or other similar conversion
+			    return undefined;
+			  return value;
+			}
+
+        	var chartDataStore = Ext.create("Ext.data.ArrayStore", {
+				  storeId: "chartData",
+				  fields: [
+				    {name: "year", type: "integer"},
+				    "country1",
+				    {name: "value1", type: "integer", convert: convertInt},
+				    "country2",
+				    {name: "value2", type: "integer", convert: convertInt}
+				  ],
+				  data: [
+				    [1997, "USA", 66, "Canada", null],
+				    [1998, "USA", 81, "Canada", null],
+				    [1999, "USA", 83, "Canada", 46],
+				    [2000, "USA", 61, "Canada", 45],
+				    [2001, "USA", null, "Canada", 53],
+				    [2002, "USA", null, "Canada", 43]
+				  ]
+
+				});
+        	var win = Ext.create("Ext.chart.Chart", {
+				  width: 600,
+				  height: 400,
+				  hidden: false,
+				  title: "Example working chart",
+				  renderTo: Ext.getBody(),
+				  layout: "fit",
+				  style: "background:#fff",
+				  animate: true,
+				  store: chartDataStore,
+				  shadow: true,
+				  theme: "Category1",
+				  legend: {
+				    position: "bottom"
+				  },
+				  axes: [{
+				      type: "Numeric",
+				      minimum: 0,
+				      position: "left",
+				      fields: ["value1", "value2"],
+				      title: "Value",
+				      minorTickSteps: 1,
+				      grid: {
+				        odd: {
+				          opacity: 1,
+				          fill: "#ddd",
+				          stroke: "#bbb",
+				          "stroke-width": 0.5
+				        }
+				      }
+				    }, {
+				      type: "Category",
+				      position: "bottom",
+				      fields: ["year"],
+				      title: "Year"
+				    }],
+				  series: [{
+				      type: "line",
+				      highlight: {
+				        size: 7,
+				        radius: 7
+				      },
+				      axis: "left",
+				      smooth: true,
+				      xField: "year",
+				      yField: "value1",
+				      title: "USA",
+				      markerConfig: {
+				        type: "cross",
+				        size: 4,
+				        radius: 4,
+				        "stroke-width": 0
+				      },
+				      marker: true,
+				      tips: {
+						  trackMouse: true,
+						  width: 140,
+						  height: 28,
+						  renderer: function (storeItem, item) {
+						      this.setHtml(storeItem.get('year') + ': ' + storeItem.get('value1') + ' views');
+						      console.log(storeItem.get('year') + ': ' + storeItem.get('value1') + ' views');
+						  }
+					  }
+				    }, {
+				      type: "line",
+				      highlight: {
+				        size: 7,
+				        radius: 7
+				      },
+				      axis: "left",
+				      smooth: true,
+				      xField: "year",
+				      yField: "value2",
+				      title: "Canada",
+				      markerConfig: {
+				        type: "circle",
+				        size: 4,
+				        radius: 4,
+				        "stroke-width": 0
+				      }
+				    }]
+				});
+        	
+			
+
+
+
+			var chartDict = [
+    			{"date_id":"2012-01-22", "value":1},
+    			{"date_id":"2012-01-23", "value":2},
+    			{"date_id":"2012-01-24", "value":3}
+			];
+
+			var chartList = [
+				    [1997, 22],
+				    [1998, 30],
+				    [1999, 40],
+				    [2000, 45],
+				    [2001, 53],
+				    [2002, 43]
+				];
+
+
+			var DictData =[{"value": 0.31207600000000002, "date_id": "20141231"}, {"value": 0.350686, "date_id": "20140930"}, {"value": 0.32992700000000003, "date_id": "20140630"}, {"value": 0.305006, "date_id": "20140331"}, {"value": 0.31605499999999997, "date_id": "20131231"}, {"value": 0.32264799999999999, "date_id": "20130930"}, {"value": 0.32556099999999999, "date_id": "20130630"}, {"value": 0.308226, "date_id": "20130331"}, {"value": 0.32783099999999998, "date_id": "20121231"}, {"value": 0.32671499999999998, "date_id": "20120930"}, {"value": 0.34031, "date_id": "20120630"}, {"value": 0.31892900000000002, "date_id": "20120331"}, {"value": 0.34135100000000002, "date_id": "20111231"}, {"value": 0.34344799999999998, "date_id": "20110930"}, {"value": 0.35489500000000002, "date_id": "20110630"}, {"value": 0.33249699999999999, "date_id": "20110331"}, {"value": 0.35672799999999999, "date_id": "20101231"}, {"value": 0.35788599999999998, "date_id": "20100930"}, {"value": 0.41702099999999998, "date_id": "20100630"}, {"value": 0.42837500000000001, "date_id": "20100331"}, {"value": 0.457982, "date_id": "20091231"}, {"value": 0.48146600000000001, "date_id": "20090930"}, {"value": 0.46819499999999997, "date_id": "20090630"}, {"value": 0.46226400000000001, "date_id": "20090331"}, {"value": 0.47398000000000001, "date_id": "20081231"}, {"value": 0.47418100000000002, "date_id": "20080930"}, {"value": 0.50348199999999999, "date_id": "20080630"}, {"value": 0.50519599999999998, "date_id": "20080331"}, {"value": 0.51589700000000005, "date_id": "20071231"}, {"value": 0.55459899999999995, "date_id": "20070930"}, {"value": 0.58279000000000003, "date_id": "20070630"}, {"value": 0.57189599999999996, "date_id": "20070331"}, {"value": 0.57403999999999999, "date_id": "20061231"}, {"value": 0.46417700000000001, "date_id": "20051231"}, {"value": 0.57039499999999999, "date_id": "20041231"}];
+			DictData = DictData.reverse();
+            function convertStr2Int(value) {
+			  if (typeof value !== 'number') // or other similar conversion
+			    return parseInt(value);
+			  return value;
+			}
+
+			var DictDataTimeStamp = [];
+			for (var x in DictData){
+				
+				var value = DictData[x]["value"];
+				var date_id = parseInt(DictData[x]["date_id"]);
+				var year = parseInt(date_id/10000);
+				var month = parseInt((date_id % 10000)/100);
+				var day = 30; //date_id % 1000000
+				var date_id_timestamp = (year-2004)*360 + (month-1)*30; //20040130
+				console.log(date_id_timestamp);
+				DictDataTimeStamp.push({"value":value, "date_id": date_id_timestamp});
+			};
+        	var chartDataStore1 = Ext.create("Ext.data.JsonStore", {       //set ArrayStore or JsonStore
+				  storeId: "chartData1",
+				  fields: [
+				  		{name: "date_id",type: "integer", convert: convertStr2Int}, 
+				  		{name: "value", type: "float"}
+				  ],
+				  data: DictDataTimeStamp
+
+				});
+        	var count=0
+			var win1 = Ext.create("Ext.chart.Chart", {
+				  width: 600,
+				  height: 400,
+				  hidden: false,
+				  title: "Example working chart 2",
+				  renderTo: Ext.getBody(),
+				  layout: "fit",
+				  margin: 4, 
+				  style: "background:#fff",
+				  animate: true,
+				  store: chartDataStore1,
+				  shadow: true,
+				  theme: "Category1",
+				  legend: {
+				  	position: "bottom"
+				  },
+				  axes: [{
+				      type: "Numeric",
+				      minimum: 0,
+				      position: "left",
+				      fields: ["value"],
+				      title: "Value",
+				      minorTickSteps: 1,
+				      grid: {
+				        odd: {
+				          opacity: 1,
+				          fill: "#ddd",	
+				          stroke: "#bbb",
+				          "stroke-width": 0.5,
+
+				        }
+				      },
+				      label: {
+					        	renderer: function(item) {
+				        		// body...
+				        		console.log("value_axis:"+item+ (typeof item));
+				        		return item.toFixed(1);
+				        	}
+				        }
+				    }, {
+				    	type: "Numeric",
+				    	position: "bottom",
+				    	fields: ["date_id"],
+				        title: "Year",
+				        grid: false,
+				        minimum: 330,
+				        maximum: 5370,
+				        minorTickSteps: 3,
+				        majorTickSteps: 13,
+				        label: {
+				        	rotate: {
+				        		degrees: -45
+				        	},
+				        	align: 'left',
+				        	renderer: function(item) {
+				        		// body...
+				        		console.log("date_id_axis_item:"+item);
+				        		count = count + 1;
+				        		var year = parseInt(item/360) + 2004; //20040130
+				        		var month = ((item%360)/30) + 1; //20040130
+				        		var year_month_day = year * 10000 + month * 100 + 31;
+				        		return year_month_day.toString();
+				        	}
+				        }
+				    }],
+			    series: [{
+			    	type: "line",
+			      	highlight: {
+			        	size: 7,
+			        	radius: 7
+			      	},
+			      	axis: "left",
+			      	smooth: true,
+			      	xField: "date_id",
+			      	yField: "value",
+			      	title: "Data",
+			      	style: {
+			      		"stroke-width": 1
+			      	},
+			      
+			      	markerConfig: {
+			        	type: "circle",
+			        	size: 3,
+			        	radius: 3,
+			        	"stroke-width": 0
+			      	},
+			      	marker: true,
+			      	tips: {
+					  	trackMouse: true,
+					  	width: 140,
+					  	height: 28,
+					  	renderer: function (storeItem, item) {
+					      	this.setHtml(storeItem.get('date_id') + ': ' + storeItem.get('value') + ' views');
+					      	console.log(storeItem.get('date_id') + ': ' + storeItem.get('value') + ' views');
+					  	}
+				  	}
+			    }]
+			})
+
+        })
+			
+
+			
+        </script>
+    </head>
+    <body>
+    	<div id="myDiv">This is a chart example.</div>
+    </body>
+</html>
